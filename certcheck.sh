@@ -52,7 +52,7 @@ function exists {
 function getsecs {
     date="$*"
     case `uname -s` in
-        Darwin) 
+        Darwin)
             if ! command -v gdate > /dev/null; then
                 error "please install coreutils for the gdate (gnu date) utility!"
             fi
@@ -66,7 +66,7 @@ function getsecs {
 info "loglevel at $LOGLEVEL"
 info "expiration threshold at $THRESHOLD"
 
-for domain in ${DOMAINS[*]}; do 
+for domain in ${DOMAINS[*]}; do
     exists $domain || continue
     enddate=$(echo | openssl s_client -servername $domain -connect $domain:443 2>/dev/null | openssl x509 -noout -enddate | cut -d= -f2)
     debug "end date: $enddate"
